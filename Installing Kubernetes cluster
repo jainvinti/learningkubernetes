@@ -62,6 +62,7 @@ Install the Virtual Network layer
 kubectl apply -f https://docs.projectcalico.org/v3.11/manifests/calico.yaml
 
 Join Worker node
+kubeadm join <ip_of_machine_eth0>:6443 --token <token> --discovery-token-ca-cert-hash <hash>
 kubeadm join 10.74.130.21:6443 --token nrdq2n.oircm4039x0n5mro     --discovery-token-ca-cert-hash sha256:1a6ec438decf184f4fe1ef262d6d61ad4d9a7492ca537d3bbc6dd7c3bf51ce43
 
 
