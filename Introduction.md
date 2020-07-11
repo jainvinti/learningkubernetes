@@ -15,3 +15,17 @@ The worker node(s) host the Pods that are the components of the application work
 This document outlines the various components you need to have a complete and working Kubernetes cluster.
 
 > https://kubernetes.io/docs/concepts/overview/components/
+
+### Control Plane Components
+- kube-apiserver
+- etcd 
+- kube-scheduler
+- kube-controller-manager
+- cloud-controller-manager
+
+> https://kubernetes.io/docs/concepts/overview/components/#control-plane-components
+
+### Node Coomponents
+- kubelet  
+- kube-proxy
+- Container runtime
