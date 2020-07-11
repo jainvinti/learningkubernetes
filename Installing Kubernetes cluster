@@ -1,4 +1,6 @@
+```
 hostnamectl set-hostname node10.dockerhunt.com
+```
 
 Update yum
 sudo yum check-update
