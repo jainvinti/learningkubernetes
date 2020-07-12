@@ -134,11 +134,13 @@ The API currently supports two types of selectors: equality-based and set-based.
 The semantics of empty or non-specified selectors are dependent on the context, and API types that use selectors should document the validity and meaning of them.
 
 ```
-Note: For some API types, such as ReplicaSets, the label selectors of two instances must not overlap within a namespace, or the controller can see that as conflicting instructions and fail to determine how many replicas should be present.
+Note: For some API types, such as ReplicaSets, the label selectors of two instances must not overlap within a namespace, 
+or the controller can see that as conflicting instructions and fail to determine how many replicas should be present.
 ```
 
 ```
-Caution: For both equality-based and set-based conditions there is no logical OR (||) operator. Ensure your filter statements are structured accordingly.
+Caution: For both equality-based and set-based conditions there is no logical OR (||) operator. 
+Ensure your filter statements are structured accordingly.
 ```
 
 **Equality-based requirement**
