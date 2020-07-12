@@ -143,7 +143,7 @@ Caution: For both equality-based and set-based conditions there is no logical OR
 Ensure your filter statements are structured accordingly.
 ```
 
-**Equality-based requirement**
+- **Equality-based requirement**
 Equality- or inequality-based requirements allow filtering by label keys and values. Matching objects must satisfy all of the specified label constraints, though they may have additional labels as well. Three kinds of operators are admitted =,==,!=. The first two represent equality (and are simply synonyms), while the latter represents inequality. For example:
 
 ```
@@ -151,7 +151,7 @@ environment = production
 tier != frontend
 ```
 
-**Set-based requirement**
+- **Set-based requirement**
 Set-based label requirements allow filtering keys according to a set of values. Three kinds of operators are supported: in,notin and exists (only the key identifier). For example:
 
 ```
