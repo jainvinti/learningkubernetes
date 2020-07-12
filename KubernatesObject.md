@@ -41,7 +41,9 @@ spec:
 
 One way to create a Deployment using a .yaml file like the one above is to use the kubectl apply command in the kubectl command-line interface, passing the .yaml file as an argument. Here's an example:
 
-```kubectl apply -f https://k8s.io/examples/application/deployment.yaml --record```
+```
+kubectl apply -f https://k8s.io/examples/application/deployment.yaml --record
+```
 
 > https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/#describing-a-kubernetes-object
 
@@ -56,3 +58,59 @@ In the .yaml file for the Kubernetes object you want to create, you'll need to s
 The precise format of the object spec is different for every Kubernetes object, and contains nested fields specific to that object. The Kubernetes API Reference can help you find the spec format for all of the objects you can create using Kubernetes. For example, the spec format for a Pod can be found in PodSpec v1 core, and the spec format for a Deployment can be found in DeploymentSpec v1 apps.
 
 > https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/#required-fields
+
+### Kubernetes Object Management
+
+> https://kubernetes.io/docs/concepts/overview/working-with-objects/object-management/#management-techniques
+
+### Object Names and IDs
+Each object in your cluster has a Name that is unique for that type of resource. Every Kubernetes object also has a UID that is unique across your whole cluster.
+
+For example, you can only have one Pod named myapp-1234 within the same namespace, but you can have one Pod and one Deployment that are each named myapp-1234.
+
+For non-unique user-provided attributes, Kubernetes provides labels and annotations.
+
+Names
+- DNS Subdomain Names
+- DNS Label Names
+- Path Segment Names
+UIDs
+
+> https://kubernetes.io/docs/concepts/overview/working-with-objects/names/
+
+### Namespaces
+Kubernetes supports multiple virtual clusters backed by the same physical cluster. These virtual clusters are called namespaces.
+
+> https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+> https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/#working-with-namespaces
+
+**Viewing namespaces**
+```
+kubectl get namespace
+```
+**Setting the namespace for a request**
+To set the namespace for a current request, use the --namespace flag.
+```
+kubectl run nginx --image=nginx --namespace=<insert-namespace-name-here>
+kubectl get pods --namespace=<insert-namespace-name-here>
+```
+**Setting the namespace preference**
+You can permanently save the namespace for all subsequent kubectl commands in that context.
+```
+kubectl config set-context --current --namespace=<insert-namespace-name-here>
+# Validate it
+kubectl config view --minify | grep namespace:
+```
+
+**Not All Objects are in a Namespace**
+Most Kubernetes resources (e.g. pods, services, replication controllers, and others) are in some namespaces. However namespace resources are not themselves in a namespace. And low-level resources, such as nodes and persistentVolumes, are not in any namespace.
+
+To see which Kubernetes resources are and aren't in a namespace:
+```
+# In a namespace
+kubectl api-resources --namespaced=true
+
+# Not in a namespace
+kubectl api-resources --namespaced=false
+```
+
