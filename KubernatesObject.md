@@ -115,3 +115,43 @@ kubectl api-resources --namespaced=true
 kubectl api-resources --namespaced=false
 ```
 
+More about namespace
+```
+kubectl describe namespaces <name>
+```
+> https://kubernetes.io/docs/tasks/administer-cluster/namespaces/#before-you-begin
+
+### Labels and Selectors
+Labels are key/value pairs that are attached to objects, such as pods. Labels are intended to be used to specify identifying attributes of objects that are meaningful and relevant to users, but do not directly imply semantics to the core system. Labels can be used to organize and to select subsets of objects. Labels can be attached to objects at creation time and subsequently added and modified at any time. Each object can have a set of key/value labels defined. Each Key must be unique for a given object.
+
+#### Label selectors
+Unlike names and UIDs, labels do not provide uniqueness. In general, we expect many objects to carry the same label(s).
+
+Via a label selector, the client/user can identify a set of objects. The label selector is the core grouping primitive in Kubernetes.
+
+The API currently supports two types of selectors: equality-based and set-based. A label selector can be made of multiple requirements which are comma-separated. In the case of multiple requirements, all must be satisfied so the comma separator acts as a logical AND (&&) operator.
+
+The semantics of empty or non-specified selectors are dependent on the context, and API types that use selectors should document the validity and meaning of them.
+
+```Note: For some API types, such as ReplicaSets, the label selectors of two instances must not overlap within a namespace, or the controller can see that as conflicting instructions and fail to determine how many replicas should be present.```
+```Caution: For both equality-based and set-based conditions there is no logical OR (||) operator. Ensure your filter statements are structured accordingly.```
+
+**Equality-based requirement**
+Equality- or inequality-based requirements allow filtering by label keys and values. Matching objects must satisfy all of the specified label constraints, though they may have additional labels as well. Three kinds of operators are admitted =,==,!=. The first two represent equality (and are simply synonyms), while the latter represents inequality. For example:
+
+```
+environment = production
+tier != frontend
+```
+
+**Set-based requirement**
+Set-based label requirements allow filtering keys according to a set of values. Three kinds of operators are supported: in,notin and exists (only the key identifier). For example:
+
+```
+environment in (production, qa)
+tier notin (frontend, backend)
+partition
+!partition
+```
+> https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+
