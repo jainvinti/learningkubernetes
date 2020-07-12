@@ -74,6 +74,7 @@ Names
 - DNS Subdomain Names
 - DNS Label Names
 - Path Segment Names
+
 UIDs
 
 > https://kubernetes.io/docs/concepts/overview/working-with-objects/names/
