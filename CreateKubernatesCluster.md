@@ -101,6 +101,3 @@ Hello world
 kubectl run nginx --image=nginx:1.10.0 --requests=cpu=200m --replicas=2
 kubectl get pods -o wide
 ```
-
-
-Reference - https://medium.com/@nmlaxaman/kubernetes-quick-installation-on-centos-7-6-65ffe863a87c
